@@ -122,6 +122,7 @@ local function request_access_token(code)
       ["Content-type"] = "application/x-www-form-urlencoded"
     },
     ssl_verify = true,
+    keepalive=false,
   })
   if not res then
     return nil, (err or "auth token request failed: " .. (err or "unknown reason"))
@@ -144,6 +145,7 @@ local function request_profile(token)
       ["Authorization"] = "Bearer " .. token,
     },
     ssl_verify = true,
+    keepalive=false,
   })
   if not res then
     return nil, "auth info request failed: " .. (err or "unknown reason")
